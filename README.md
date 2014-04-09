@@ -4,3 +4,4 @@
 *maven运行方法：</br>
 1)选择maven</br>
 2)在command line输入"tomcat7:run"即可</br>
+3)这是一个git的演示
