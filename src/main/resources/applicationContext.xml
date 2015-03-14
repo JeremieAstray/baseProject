@@ -4,31 +4,33 @@
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
-          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
-          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
-          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 " default-lazy-init="true">
+        <!--用于持有ApplicationContext,可以使用SpringContextHolder.getBean('xxxx')的静态方法得到spring bean对象-->
+    <bean id="springContextHolder" class="baseProject.etop.commons.util.SpringContextHolder" lazy-init="false"/>
 
-    <bean id="springContextHolder" class="baseProject.commons.util.SpringContextHolder" lazy-init="false"/>
-
+     <!-- PropertyPlaceholderConfigurer起的作用就是将占位符指向的数据库配置信息放在bean中定义 的工具-->
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations" value="classpath:jdbc.properties"/>
     </bean>
 
+    <!--sessionFactory配置-->
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
             <list>
-                <value>baseProject.basic.entity</value>
+                <value>baseProject.etop.modules.baseModules.entity</value>
             </list>
         </property>
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">baseProject.commons.dialect.PMySQLDialect</prop>
-                <prop key="hibernate.generate_statistics">true</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.generate_statistics">false</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">false</prop>
                 <prop key="hibernate.jdbc.batch_size">50</prop>
@@ -36,69 +38,66 @@
                 <prop key="javax.persistence.validation.mode">none</prop>
                 <prop key="hibernate.cache.use_second_level_cache">true</prop>
                 <prop key="hibernate.cache.use_query_cache">true</prop>
-                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop> 
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
                 <prop key="jdbc.use_scrollable_resultset">false</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/baseProject</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+                <prop key="hibernate.connection.username">root</prop>
+                <prop key="hibernate.connection.password">55555</prop>
             </props>
         </property>
     </bean>
 
+
     <!-- c3p0 configuration -->
     <bean id="mainDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <property name="driverClass" value="${jdbc.driverClass}" />
-        <property name="jdbcUrl" value="${jdbc.url}" />
-        <property name="user" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
-        <property name="minPoolSize" value="${jdbc.minPoolSize}" />
-        <property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
-        <property name="checkoutTimeout" value="${jdbc.checkoutTimeout}" />
-        <property name="maxStatements" value="${jdbc.maxStatements}" />
-        <property name="testConnectionOnCheckin" value="${jdbc.testConnectionOnCheckin}" />
-        <property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}" />
-    </bean>
-    <!-- BoneCP configuration -->
-    <bean id="minorDataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
-        <property name="driverClass" value="${jdbc.driverClass}" />
-        <property name="jdbcUrl" value="${jdbc.url}" />
-        <property name="username" value="${jdbc.username}"/>
+        <property name="driverClass" value="${jdbc.driverClass}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
-        <property name="maxConnectionsPerPartition" value="100"/>
-        <property name="minConnectionsPerPartition" value="40"/>
-        <property name="partitionCount" value="4"/>
-        <property name="acquireIncrement" value="10"/>
-        <property name="releaseHelperThreads" value="3"/>
+        <property name="minPoolSize" value="${jdbc.minPoolSize}"/>
+        <property name="maxPoolSize" value="${jdbc.maxPoolSize}"/>
+        <property name="checkoutTimeout" value="${jdbc.checkoutTimeout}"/>
+        <property name="maxStatements" value="${jdbc.maxStatements}"/>
+        <property name="testConnectionOnCheckin" value="${jdbc.testConnectionOnCheckin}"/>
+        <property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}"/>
     </bean>
 
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
         <property name="targetDataSource">
-            <ref local="mainDataSource" />
+            <ref bean="mainDataSource"/>
         </property>
     </bean>
-    <context:annotation-config />
-    <context:component-scan base-package="baseProject">
-        <context:exclude-filter type="regex" expression="baseProject.view.*" />
-    </context:component-scan>
 
+    <!--事务管理-->
     <bean id="transactionManager"
           class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory">
-            <ref local="sessionFactory" />
-        </property>
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
+    <!--注解配置-->
+    <context:annotation-config/>
+    <context:component-scan base-package="baseProject.etop">
+        <context:exclude-filter type="regex" expression="baseProject.etop.basic.controller.*"/>
+        <context:exclude-filter type="regex" expression="baseProject.etop.modules.baseModules.controller.*"/>
+    </context:component-scan>
+
     <!-- 拦截配置 -->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
             <!--说明事务类别 -->
             <tx:method name="delete*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
-            <tx:method name="save*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
-            <tx:method name="add*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
-            <tx:method name="update*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
-            <tx:method name="batch*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
-            <tx:method name="sendOpen*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
-            <tx:method name="sendClose*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
-            <tx:method name="find*" propagation="REQUIRED" read-only="true" />
-            <tx:method name="get*" propagation="REQUIRED" read-only="true" />
-            <tx:method name="load*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="save*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="add*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="update*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="batch*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="sendOpen*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="sendClose*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="handle*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception"/>
+            <tx:method name="find*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="get*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="load*" propagation="REQUIRED" read-only="true"/>
             <tx:method name="*" read-only="true"/>
         </tx:attributes>
     </tx:advice>
@@ -107,10 +106,12 @@
     <aop:config expose-proxy="true" proxy-target-class="true">
         <!-- service层事务 -->
         <aop:advisor id="serviceTx" advice-ref="txAdvice"
-                     pointcut="execution(public * baseProject..service..*.*(..))" order="1" />
+                     pointcut="execution(public * baseProject.etop.modules.baseModules.service.*.*(..))" order="1"/>
+        <aop:advisor id="serviceTx" advice-ref="txAdvice"
+                     pointcut="execution(public * baseProject.etop.service.*.*(..))" order="2" />
     </aop:config>
 
     <!-- Enable @Transactional support -->
-    <tx:annotation-driven />
+    <tx:annotation-driven/>
 
 </beans>

@@ -1,65 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-3.2.xsd
-        http://www.springframework.org/schema/mvc 
-        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd"> 
-    <context:component-scan base-package="baseProject.modules" use-default-filters="false">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-    </context:component-scan>
-    <context:component-scan base-package="baseProject.basic.controller" />
-    <mvc:annotation-driven />
-    <!--<mvc:resources location="/resources/**" mapping="/resources/**" />-->
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <bean id="multipartResolver"
-          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="defaultEncoding">
-            <value>UTF-8</value>
-        </property>
-        <!-- set the max upload size 2G -->
-        <property name="maxUploadSize">
-            <value>2147483647</value>
-        </property>
-        <property name="maxInMemorySize">
-            <value>4096</value>
-        </property>
+    <!--Controller注解-->
+    <context:component-scan base-package="baseProject.etop" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation"
+                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+    <!--切面-->
+    <aop:config proxy-target-class="true"/>
+    <mvc:annotation-driven/>
+    <mvc:default-servlet-handler/>
+    <!--缺少No mapping found for HTTP request with URI [/resource/js/md5.js] in DispatcherServlet with name 'SpringMVC'-->
+   <!-- <mvc:default-servlet-handler/>
+    <mvc:resources location="/resource/css/" mapping="/resources/css/**"/>
+    <mvc:resources location="/resource/img/" mapping="/resources/image/**"/>
+    <mvc:resources location="/resource/swf/" mapping="/resources/swf/**"/>-->
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="1">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="cache" value="true" />
+        &lt;!&ndash;<property name="prefix" value="/pages/" />&ndash;&gt;
+        <property name="suffix" value=".jsp" />
+    </bean>-->
+    <mvc:resources location="/resource/js/" mapping="/resources/js/**"/>
+    <!--velocity的配置-->
+    <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver" p:order="2">
+        <property name="toolboxConfigLocation" value="/WEB-INF/velocityToolBox.xml"/>
+        <property name="viewClass" value="baseProject.etop.commons.velocity.MyVelocityToolboxView"/>
+        <property name="cache" value="true"/>
+        <property name="prefix" value=""/>
+        <property name="suffix" value=".vm"/>
+        <property name="exposeSpringMacroHelpers" value="true"/>
+        <!--是否使用spring对宏定义的支持-->
+        <property name="exposeRequestAttributes" value="true"/>
+        <!--是否开放request属性-->
+        <!--<property name="requestContextAttribute" value="rc"/>&lt;!&ndash;request属性引用名称&ndash;&gt;-->
+        <property name="contentType" value="text/html;charset=UTF-8"/>
     </bean>
-    <!-- 根据客户端的不同的请求决定不同的view进行响应, 如 /blog/1.json /blog/1.xml -->
-    <bean id="negotiatingViewResolver"
-          class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-        <!-- 设置为true以忽略对Accept Header的支持 -->
-        <property name="ignoreAcceptHeader" value="true" />
-        <!-- 在没有扩展名时即: "/user/1" 时的默认展现形式 -->
-        <property name="defaultContentType" value="text/html" />
-        <!-- 扩展名至mimeType的映射,即 /user.json => application/json -->
-        <property name="mediaTypes">
-            <map>
-                <entry key="json" value="application/json" />
-                <entry key="html" value="text/html" />
-            </map>
-        </property>
-        <!-- 用于开启 /userinfo/123?format=json 的支持 -->
-        <property name="favorParameter" value="false" />
-        <property name="viewResolvers">
-            <list>
-                <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
-                <bean id="InternalviewResolver"
-                      class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-                    <property name="prefix" value="/" />
-                    <property name="suffix" value=".jsp" />
-                </bean>
-            </list>
-        </property>
-        <property name="defaultViews">
-            <list>
-                <!-- for application/json -->
-                <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
-            </list>
+
+    <bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+
+        <property name="resourceLoaderPath" value="/"/>
+        <property name="velocityProperties">
+            <props>
+                <prop key="input.encoding">utf-8</prop>
+                <prop key="output.encoding">utf-8</prop>
+                <!-- 配置velocity中foreach循环的下标 -->
+                <prop key="directive.foreach.counter.name">velocityCount</prop>
+                <prop key="directive.foreach.counter.initial.value">0</prop>
+            </props>
         </property>
     </bean>
 </beans>
