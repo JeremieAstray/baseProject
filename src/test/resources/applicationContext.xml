@@ -24,7 +24,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
             <list>
-                <value>com.etop.baseProject.modules.baseModules.entity</value>
+                <value>baseProject.etop.modules.baseModules.entity</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -74,7 +74,7 @@
 
     <!--注解配置-->
     <context:annotation-config/>
-    <context:component-scan base-package="com.etop.baseProject">
+    <context:component-scan base-package="baseProject.etop">
         <context:exclude-filter type="regex" expression="baseProject.etop.basic.controller.*"/>
         <context:exclude-filter type="regex" expression="baseProject.etop.modules.baseModules.controller.*"/>
     </context:component-scan>
@@ -102,9 +102,7 @@
     <aop:config expose-proxy="true" proxy-target-class="true">
         <!-- service层事务 -->
         <aop:advisor id="serviceTx" advice-ref="txAdvice"
-                     pointcut="execution(public * com.etop.baseProject.modules..service..*.*(..))" order="1"/>
-        <aop:advisor id="serviceTx" advice-ref="txAdvice"
-                     pointcut="execution(public * com.etop.baseProject.service.*.*(..))" order="2" />
+                     pointcut="execution(public * baseProject.etop.modules..service.*.*(..))" order="1"/>
     </aop:config>
 
     <!-- Enable @Transactional support -->

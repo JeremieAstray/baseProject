@@ -15,20 +15,20 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!--Controller注解-->
-    <context:component-scan base-package="baseProject.etop" use-default-filters="false">
+    <context:component-scan base-package="com.etop.baseProject" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:include-filter type="annotation"
                                 expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
+
     <!--切面-->
     <aop:config proxy-target-class="true"/>
     <mvc:annotation-driven/>
     <mvc:default-servlet-handler/>
-    <!--缺少No mapping found for HTTP request with URI [/resource/js/md5.js] in DispatcherServlet with name 'SpringMVC'-->
-   <!-- <mvc:default-servlet-handler/>
-    <mvc:resources location="/resource/css/" mapping="/resources/css/**"/>
-    <mvc:resources location="/resource/img/" mapping="/resources/image/**"/>
-    <mvc:resources location="/resource/swf/" mapping="/resources/swf/**"/>-->
+    <!--资源-->
+    <mvc:resources location="/resources/js/" mapping="/resources/js/**"/>
+    <mvc:resources location="/resources/css/" mapping="/resources/css/**"/>
+
     <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="1">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
         <property name="cache" value="true" />
@@ -39,7 +39,7 @@
     <!--velocity的配置-->
     <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver" p:order="2">
         <property name="toolboxConfigLocation" value="/WEB-INF/velocityToolBox.xml"/>
-        <property name="viewClass" value="baseProject.etop.commons.velocity.MyVelocityToolboxView"/>
+        <property name="viewClass" value="com.etop.baseProject.commons.velocity.MyVelocityToolboxView"/>
         <property name="cache" value="true"/>
         <property name="prefix" value=""/>
         <property name="suffix" value=".vm"/>
@@ -51,6 +51,7 @@
         <property name="contentType" value="text/html;charset=UTF-8"/>
     </bean>
 
+    <!--velocity配置-->
     <bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
 
         <property name="resourceLoaderPath" value="/"/>
@@ -63,5 +64,14 @@
                 <prop key="directive.foreach.counter.initial.value">0</prop>
             </props>
         </property>
+    </bean>
+
+    <!--上传文件限制-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!-- set the max upload size 2G -->
+        <property name="maxUploadSize" value="2147483647"/>
+        <property name="maxInMemorySize" value="4096"/>
     </bean>
 </beans>

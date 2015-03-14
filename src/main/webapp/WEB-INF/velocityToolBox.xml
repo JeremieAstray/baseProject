@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tools>
+    <toolbox scope="application">
+        <tool class="com.etop.baseProject.commons.shiro.support.Permission"/>
+        <tool class="org.apache.velocity.tools.generic.DateTool"/>
+    </toolbox>
     <toolbox scope="request">
         <tool key="link" class="org.apache.velocity.tools.view.LinkTool"/>
-        <!--<tool>
-            &lt;!&ndash; key>shiro</key &ndash;&gt;&lt;!&ndash; 可选默认为 shiro &ndash;&gt;
-            <key>shiro</key>
-            <scope>application</scope>
-            <class>org.apache.shiro.web.support.velocity.Permission</class>
-        </tool>-->
     </toolbox>
-    <toolbox scope="application">
-        <tool key="shiro" class="baseProject.etop.commons.shiro.support.Permission"/>
-    </toolbox>
-    <tool>
-        <key>date</key>
-        <scope>application</scope>
-        <class>org.apache.velocity.tools.generic.DateTool</class>
-    </tool>
 </tools>
 
