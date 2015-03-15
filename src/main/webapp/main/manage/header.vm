@@ -1,0 +1,26 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">易拓基础工程</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span name="user-name">$session.getAttribute("user").username</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        #if($shiro.hasRole("admin"))
+                            <li><a href="$link.contextPath/user/register">后台管理</a></li>
+                        #end
+                        <li><a href="$link.contextPath/user/editPassword">修改密码</a></li>
+                        <li class="divider"></li>
+                        <li><a href="$link.contextPath/user/logout">退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,10 +1,12 @@
 package com.etop.baseProject.basic.controller;
 
+import com.etop.baseProject.modules.baseModules.entity.User;
 import com.etop.baseProject.commons.util.DateUtils;
-import com.etop.baseProject.modules.baseModules.entity.TUserEntity;
 import org.apache.log4j.Logger;
+import org.apache.shiro.authz.UnauthenticatedException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -14,7 +16,8 @@ import java.util.Date;
 
 /**
  * 控制器基类
- * Created by jessy on 2015/3/5.
+ * @author Pengo.Wen
+ * Created by pengo on 14-9-13.
  */
 public abstract class BaseController {
 
@@ -23,8 +26,8 @@ public abstract class BaseController {
 
     protected Logger log = Logger.getLogger(this.getClass());
 
-    public TUserEntity getCurrentUser(HttpServletRequest request){
-        return (TUserEntity) request.getSession().getAttribute("currentUser");
+    public User getCurrentUser(HttpServletRequest request){
+        return (User) request.getSession().getAttribute("currentUser");
     }
 
     /**
@@ -97,7 +100,7 @@ public abstract class BaseController {
         });
     }
 
-    /*@ExceptionHandler(Exception.class)
+    @ExceptionHandler(Exception.class)
     public String handleException(Exception ex, HttpServletRequest request){
         if(ex instanceof UnauthenticatedException){
             log.error("当前用户没有此权限");
@@ -108,7 +111,6 @@ public abstract class BaseController {
             request.setAttribute("exMsg", ex.getMessage());
             return "errors/exception";
         }
-    }*/
+    }
 
 }
-

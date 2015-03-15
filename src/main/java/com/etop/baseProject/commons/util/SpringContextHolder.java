@@ -8,7 +8,8 @@ import org.springframework.context.ApplicationContextAware;
 
 /**
  * 以静态变量保存Spring ApplicationContext, 可在任何代码任何地方任何时候取出ApplicaitonContext.
- * Created by jessy on 2015/3/5.
+ * @author Pengo.Wen
+ * Created by pengo on 14-9-13.
  */
 public class SpringContextHolder implements ApplicationContextAware, DisposableBean {
 
@@ -75,4 +76,3 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
         Validate.isTrue(applicationContext != null, "applicaitonContext属性未注入, 请在applicationContext.xml中定义SpringContextHolder.");
     }
 }
-

@@ -5,7 +5,9 @@ import org.hibernate.dialect.function.SQLFunctionTemplate;
 import org.hibernate.type.StandardBasicTypes;
 
 /**
- * Created by jessy on 2015/3/5.
+ * 扩展Hibernate中的MySQLDialect，添加Convert(字段名 using gbk)函数, 中文排序
+ * @author Pengo.Wen
+ * Created by pengo on 14-9-13.
  */
 public class PMySQLDialect extends MySQLDialect {
 

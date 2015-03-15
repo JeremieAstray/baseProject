@@ -9,9 +9,10 @@ import java.net.URLEncoder;
 
 /**
  * Cookie工具类
- * Created by jessy on 2015/3/5.
+ * @author Pengo.Wen
  */
 public class CookieUtils {
+
     /**
      * 设置 Cookie（生成时间为1天）
      *

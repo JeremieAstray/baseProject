@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-lazy-init="true">
-
 
     <!-- 缓存管理器 使用Ehcache实现 -->
     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
         <property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml"/>
     </bean>
 
-
-    <!--安全管理器-->
+    <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="cacheManager" ref="cacheManager"/>
         <property name="realm" ref="myRealm"/>
+        <!--<property name="sessionManager" ref="sessionManager"/>-->
     </bean>
 
-    <!--引入自定义Realm数据源-->
+    <!--自定义Realm-->
     <bean id="myRealm" class="com.etop.baseProject.service.MyRealm">
         <property name="cachingEnabled" value="true"/>
         <property name="authenticationCachingEnabled" value="true"/>
@@ -27,15 +25,15 @@
         <property name="authorizationCacheName" value="authorizationCache"/>
     </bean>
 
-
-    <!--配置shiro的过滤器工厂类，bean的id名称要和web.xml文件的shiroFilter过滤器名称一致-->
+    <!-- 配置shiro的过滤器工厂类，id- shiroFilter要和我们在web.xml中配置的过滤器一致 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-        <!--调用我们配置的权限管理器  shiro的核心-->
+        <!-- 调用我们配置的权限管理器 -->
         <property name="securityManager" ref="securityManager"/>
-        <!-- 权限配置  anon表示不需要任何权限即可访问-->
-        <property name="filterChainDefinitions" value="/**=anon"/>
+        <!-- 如果您请求的资源不再您的权限范围，则跳转到/403请求地址 -->
+        <property name="unauthorizedUrl" value="/403"/>
+        <!-- 权限配置 -->
+        <property name="filterChainDefinitions" value="/** = anon"/>
     </bean>
-
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
@@ -45,5 +43,4 @@
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean>
-
 </beans>

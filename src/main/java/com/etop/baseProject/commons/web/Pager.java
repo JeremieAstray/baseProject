@@ -1,5 +1,6 @@
 package com.etop.baseProject.commons.web;
 
+
 import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,10 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * 分页类
+ *
  * @param <T>
- * Created by jessy on 2015/3/5.
+ * @author Pengo.Wen
  */
 public class Pager<T> {
 

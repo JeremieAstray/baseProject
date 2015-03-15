@@ -1,0 +1,240 @@
+@charset "utf-8";
+
+/*Author:Ben Yip*/
+
+/*===========The basic outline of the whole page=========*/
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    min-width: 1024px;
+    font-family: "Microsoft Yahei", "微软雅黑", sans-serif;
+    font-size: 14px;
+    overflow-y: visible;
+}
+
+div.container-fluid, div.container {
+    position: relative;
+    min-height: 100%;
+}
+
+div.main-content {
+    padding-top: 60px;
+    padding-bottom: 2em;
+}
+
+div.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding-top: .2em;
+    padding-bottom: .2em;
+    padding-right: 1em;
+    font-size: 1em;
+    text-align: right;
+    color: #666;
+    background-color: #EEE;
+}
+
+.row {
+    margin-bottom: .5em;
+}
+
+/*=========== The navigation bar ===========*/
+.navbar {
+    /*min-height: 40px !important;*/
+    /*height: 40px !important;*/
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
+    color: #ddd;
+}
+
+.navbar li {
+    /*font-size: 1.5em;*/
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.navbar-brand {
+    /*font-size: 2em;*/
+    font-size: 1.5em;
+}
+
+.navbar .glyphicon {
+    font-size: 0.8em;
+}
+
+/*========== The side bar ============*/
+
+.sidebar {
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    left: .3%;
+    z-index: 1000;
+    display: block;
+    padding: 5px 3px 5px 1px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+    border-right: 5px solid #eee;
+}
+
+.sidebar .panel {
+    margin-bottom: 10px;
+}
+
+.sidebar .panel-heading {
+    cursor: pointer;
+    padding: 4px 10px;
+    background-color: #5898D0;
+}
+
+.sidebar .list-group {
+    margin-bottom: 0;
+}
+
+.sidebar .list-group > a, .sidebar .list-group > a:hover {
+    text-decoration: none;
+    text-indent: 1.5em;
+}
+
+.sidebar .list-group-item {
+    padding: 7px 10px;
+    border: 0;
+    border-bottom: solid #ddd 1px;
+}
+
+.sidebar .nav-1st {
+    /*font-size: 1.4em;*/
+    font-size: 1.1em;
+}
+
+.sidebar .nav-2st {
+    /*font-size: 1.1em;*/
+    font-size: 1em;
+}
+
+/*
+ *
+ * different modules below.
+ *
+ */
+
+/*=================alert===================*/
+
+.alert {
+    text-align: left;
+}
+
+/*======== the 3rd level nav, act as tabs within each page ========*/
+ul.nav-3rd {
+    margin-top: -.5em;
+    margin-bottom: 1em;
+    /*margin-left: -1.3em;*/
+    font-size: 1.2em;
+}
+
+ul.nav-3rd li {
+    margin-right: -2px;
+    border: solid 1px #428BCA;
+    /*border-radius: 4px;*/
+}
+
+ul.nav-3rd li:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-right: 0;
+}
+
+ul.nav-3rd li:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: 0;
+}
+
+/*=============table================*/
+
+table > thead > tr > th, table > tbody > tr > td {
+    text-align: center;
+    vertical-align: middle !important;
+    background-color: #eee;
+}
+
+table input[type="checkbox"].checkable {
+    border: 2px solid red;
+    font-size: 2em;
+}
+
+table th.material-name {
+    width: 15em;
+}
+
+table th.manipulation {
+    width: 10em;
+}
+
+/*=========== pagination ================*/
+ul.pagination {
+    margin: 0;
+    float: right;
+}
+
+.pagination > li.border-free > span {
+    padding: 6px 4px;
+    margin-left: 0;
+    border: 1px solid #ffffff;
+}
+
+.pagination > li > input {
+    position: relative;
+    float: left;
+    padding: 6px 2px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #428bca;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #fff;
+}
+
+.pagination > li > input {
+    width: 5em;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.pagination > li > input[type="submit"]:hover {
+    color: #eee;
+    background-color: #428BCA;
+}
+
+.pagination > li > span:hover {
+    background-color: #ffffff;
+    color: #428bca;
+}
+
+/*========== input =================*/
+span.required {
+    color: red;
+    font-size: 1.1em;
+}
+
+/*==========================================*/
+/*============ specifying each page ========*/
+/*==========================================*/
+
+/*------------- editing a new account ---------------*/
+div#account-portrait.form-group {
+    margin-top: -15px;
+}
+
+div#img-holder img {
+    width: 100%;
+}

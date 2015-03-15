@@ -4,9 +4,11 @@ import java.security.MessageDigest;
 
 /**
  * 对密码进行加密和验证的类
- * Created by jessy on 2015/3/5.
+ * @author Pengo.Wen
+ * Created by pengo on 14-9-13.
  */
 public class Encrypt {
+
     private final static String[] hexDigits = {"0", "1", "2", "3", "4",
             "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
 

@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
- * Created by jessy on 2015/3/7.
+ * 自定义VelocityTools
+ * Created by Pengo.Wen on 2014/10/23.
  */
 public class MyVelocityToolboxView extends VelocityToolboxView {
 

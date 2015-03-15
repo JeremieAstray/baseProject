@@ -17,7 +17,8 @@ import java.util.Map;
 
 /**
  * 数据访问接口基础类
- * Created by jessy on 2015/3/5.
+ * @author Pengo.Wen
+ * Created by pengo on 14-9-13.
  */
 public class BaseDao<T extends BaseEntity> implements Serializable {
 
@@ -57,6 +58,7 @@ public class BaseDao<T extends BaseEntity> implements Serializable {
 
     public void save(T entity) throws DataAccessException {
         log.debug("DAO:Save entity " + entity.getClass().getSimpleName());
+        entity.setValid((short)1);
         getSession().save(entity);
     }
 
@@ -69,6 +71,7 @@ public class BaseDao<T extends BaseEntity> implements Serializable {
     public void saveOrUpdate(T entity) throws DataAccessException {
         log.debug("DAO:Sava or Update entity " + entity.getClass().getSimpleName() + ":Id=" + entity.getId());
         //getSession().clear();
+        entity.setValid((short)1);
         getSession().saveOrUpdate(entity);
     }
 
@@ -199,4 +202,3 @@ public class BaseDao<T extends BaseEntity> implements Serializable {
     }
 
 }
-

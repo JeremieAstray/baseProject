@@ -4,9 +4,11 @@ import java.math.BigDecimal;
 
 /**
  * 工具类
- * Created by jessy on 2015/3/5.
+ * @author Pengo.Wen
+ * Created by pengo on 14-9-13.
  */
 public class MyUtils {
+
     /**
      * 判断字符串不为null或空字符串
      * 建议使用StringUtils.isEmpty(String str)

@@ -1,12 +1,12 @@
 package com.etop.baseProject.modules.baseModules.dao;
 
 import com.etop.baseProject.basic.dao.BaseDao;
-import com.etop.baseProject.modules.baseModules.entity.TPermissionEntity;
+import com.etop.baseProject.modules.baseModules.entity.Permission;
 import org.springframework.stereotype.Repository;
 
 /**
- * Created by jessy on 2015/3/8.
+ * Created by Jeremie on 2014/12/8.
  */
-@Repository("permissionDao")
-public class PermissionDao extends BaseDao<TPermissionEntity> {
+@Repository("PermissionDAO")
+public class PermissionDAO extends BaseDao<Permission> {
 }

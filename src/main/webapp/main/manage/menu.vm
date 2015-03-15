@@ -1,0 +1,20 @@
+<div class="col-sm-2 sidebar">
+    #foreach($menulist in $session.getAttribute("menu"))
+        #set ( $a =$session.getAttribute('menu').indexOf($menulist) )
+        <div class="panel panel-primary">
+            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapse$a">
+                <span class="glyphicon glyphicon-tasks"></span>
+                <span class="nav-1st"> $menulist[0].groups</span>
+            </div>
+            <div id="collapse$a" class="panel-collapse collapse in">
+                <ul class="list-group">
+                    #foreach($menu in $menulist)
+                        <a href="$link.contextPath$menu.menuHref">
+                            <li class="list-group-item nav-2st">$menu.showName</li>
+                        </a>
+                    #end
+                </ul>
+            </div>
+        </div>
+    #end
+</div>

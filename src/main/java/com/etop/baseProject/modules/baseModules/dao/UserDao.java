@@ -1,12 +1,13 @@
 package com.etop.baseProject.modules.baseModules.dao;
 
+
 import com.etop.baseProject.basic.dao.BaseDao;
-import com.etop.baseProject.modules.baseModules.entity.TUserEntity;
+import com.etop.baseProject.modules.baseModules.entity.User;
 import org.springframework.stereotype.Repository;
 
 /**
- * Created by jessy on 2015/3/5.
+ * Created by Jeremie on 2014/9/30.
  */
-@Repository("userDao")
-public class UserDao extends BaseDao<TUserEntity> {
+@Repository("UserDAO")
+public class UserDAO extends BaseDao<User> {
 }

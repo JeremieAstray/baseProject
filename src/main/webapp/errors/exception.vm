@@ -107,10 +107,10 @@
             white-space: nowrap;
             cursor: pointer;
             background-color: #f5f5f5;
-            background-image: -webkit-linear-gradient(rgba(255,255,255,0), #f1f1f1);
-            background-image: -moz-linear-gradient(rgba(255,255,255,0), #f1f1f1);
-            background-image: -ms-linear-gradient(rgba(255,255,255,0), #f1f1f1);
-            background-image: -o-linear-gradient(rgba(255,255,255,0), #f1f1f1);
+            background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), #f1f1f1);
+            background-image: -moz-linear-gradient(rgba(255, 255, 255, 0), #f1f1f1);
+            background-image: -ms-linear-gradient(rgba(255, 255, 255, 0), #f1f1f1);
+            background-image: -o-linear-gradient(rgba(255, 255, 255, 0), #f1f1f1);
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
@@ -142,11 +142,26 @@
 <body>
 <div class="container">
     <h1>Exception!<span>:(</span></h1>
+
     <p>$!exMsg</p>
-    <script>
-        var GOOG_FIXURL_LANG = (navigator.language || '').slice(0,2),GOOG_FIXURL_SITE = location.host;
-    </script>
-    <script src="//linkhelp.clients.google.com/tbproxy/lh/wm/fixurl.js"></script>
+##    <script>
+##        var GOOG_FIXURL_LANG = (navigator.language || '').slice(0,2),GOOG_FIXURL_SITE = location.host;
+##    </script>
+##    <script src="//linkhelp.clients.google.com/tbproxy/lh/wm/fixurl.js"></script>
 </div>
+<script src="$link.contextPath/resources/js/global.js"></script>
+<script>
+        #if($session.getAttribute("user"))
+        ##转到公众号管理页面
+        setTimeout(function () {
+            location.href = "$link.contextPath/user/success";
+        }, 1500);
+        #else
+        ##转到登陆页面
+        setTimeout(function () {
+            location.href = "$link.contextPath/user/login";
+        }, 1500);
+        #end
+</script>
 </body>
 </html>

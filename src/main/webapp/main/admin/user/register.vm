@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="author" content="Ben Yip">
+    <meta name="Copyright" content="SCAU E-Top Studio All Rights Reserved">
+    <meta name="generator" content="IDEA">
+    <title>注册新用户</title>
+    <link rel="shortcut icon" href="$link.contextPath/resources/icon/logo-30.gif">
+    <link rel="stylesheet" href="$link.contextPath/resources/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="$link.contextPath/resources/css/global.css">
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    #parse("/main/admin/header.vm")
+    #parse("/main/admin/menu.vm")
+    #if($type == "success")
+    <div class="alert alert-success alert-dismissible feedback-float fade in text-center">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <span class="glyphicon glyphicon-ok"></span>
+        <span>$!message</span>
+    </div>
+    #elseif($type == "error")
+    <div class="alert alert-danger alert-dismissible feedback-float fade in text-center">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        <span>$!message</span>
+    </div>
+    #end
+<div class="container-fluid">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="nav nav-tabs nav-3rd">
+                    <li><span>注册新用户</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="inner-content inner-content-left">
+            <form id="editForm" class="material-edit" name="user" action="$link.contextPath/wxmanager/user/register" method="post"
+                  onSubmit="return checkPassword($('#repassword').val())">
+                <div class="form-group">
+                    <label>用户名<span class="required">*</span></label>
+                    <div>
+                        <input class="form-control" type="text" name="username" autofocus required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>新的密码<span class="required">*</span></label>
+                    <div>
+                        <input id="password" class="form-control" type="password" name="password" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>请重复输入密码<span class="required">*</span>&nbsp;<span id="passwordErr" class="required"></span></label>
+                    <div>
+                        <input id="repassword" class="form-control" name="repassword" onblur="checkPassword(this.value)" type="password" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>邮箱</label>
+                    <div>
+                        <input class="form-control" type="text" name="email"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><input  type="checkbox" name="adminRole"/>管理员权限<span class="required">*</span></label>
+                </div>
+                <div class="form-group">
+                    <label> <input type="checkbox" name="userRole"/>用户权限<span class="required">*</span></label>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-block btn-primary">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    #parse("/main/admin/footer.vm")
+</div>
+<script src="$link.contextPath/resources/js/jquery/jquery-2.1.1.min.js"></script>
+<script src="$link.contextPath/resources/js/bootstrap.min.js"></script>
+<script src="$link.contextPath/resources/js/global.js"></script>
+<script>
+    function checkPassword(value) {
+        if (value == $('#password').val()) {
+            $('#passwordErr').html("");
+            return true;
+        } else {
+            $('#passwordErr').html("密码不一致");
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

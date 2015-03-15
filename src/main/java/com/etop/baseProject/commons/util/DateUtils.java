@@ -9,10 +9,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * 日期工具类
- * Created by jessy on 2015/3/5.
+ * 日期处理工具类
+ * @author Pengo.Wen
+ * Created by pengo on 14-9-13.
  */
-public class DateUtils extends org.apache.commons.lang.time.DateUtils{
+public class DateUtils  extends org.apache.commons.lang.time.DateUtils{
 
     public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private static String[] parsePatterns = {"yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm",
@@ -132,4 +133,5 @@ public class DateUtils extends org.apache.commons.lang.time.DateUtils{
         c.add(Calendar.DAY_OF_MONTH, amount);
         return new Timestamp(c.getTimeInMillis());
     }
+
 }

@@ -1,0 +1,1292 @@
+@charset "utf-8";
+
+/*Author:Ben Yip*/
+
+/*===========The basic outline of the whole page=========*/
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    min-width: 1200px;
+    font-family: "Microsoft Yahei", "微软雅黑", sans-serif;
+    font-size: 14px;
+    overflow-y: visible;
+}
+
+div.container-fluid, div.container {
+    position: relative;
+    min-height: 100%;
+}
+
+div.main-content {
+    padding-top: 65px;
+    padding-left: 15em;
+    padding-bottom: 2em;
+    width: 100%;
+}
+
+div.main-content:after {
+    content: "";
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+div.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding-top: .2em;
+    padding-bottom: .2em;
+    padding-right: 1em;
+    font-size: 1em;
+    text-align: right;
+    color: #666;
+    background-color: #EEE;
+}
+
+/*==================inner content layout=====================*/
+
+.inner-content {
+    position: relative;
+    float: left;
+    margin: 1em 0 1.5em;
+    padding-top: .5em;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.inner-content-left {
+    width: 40%;
+}
+
+.inner-content-right {
+    width: 60%;
+}
+
+.inner-content-small {
+    width: 30%;
+}
+
+.inner-content-half {
+    width: 50%;
+}
+
+.inner-content-big {
+    width: 70%;
+}
+
+.inner-content-block {
+    width: 100%;
+}
+
+/*=============================*/
+/*======== quick tools ========*/
+/*=============================*/
+.inline-block {
+    display: inline-block !important;
+}
+
+/*=========== The navigation bar ===========*/
+.navbar {
+    /*min-height: 40px !important;*/
+    /*height: 40px !important;*/
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
+    color: #ddd;
+}
+
+.navbar li {
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.navbar-brand {
+    font-size: 1.5em;
+}
+
+.navbar .glyphicon {
+    font-size: 0.8em;
+}
+
+/*========== The side bar ============*/
+
+.sidebar {
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    left: .3%;
+    z-index: 1000;
+    display: block;
+    padding: 5px 3px 5px 1px;
+    width: 15em;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+    border-right: 5px solid #eee;
+}
+
+.sidebar .panel {
+    margin-bottom: 10px;
+}
+
+.sidebar .panel-heading {
+    cursor: pointer;
+    padding: 4px 10px;
+    background-color: #5898D0;
+}
+
+.sidebar .list-group {
+    margin-bottom: 0;
+}
+
+.sidebar .list-group > a {
+    text-decoration: none;
+    text-indent: 2em;
+}
+
+.sidebar .list-group-item {
+    padding: 7px 10px;
+    border: 0;
+    border-bottom: solid #ddd 1px;
+}
+
+.sidebar .list-group-item:hover {
+    background-color: #eee;
+}
+
+.sidebar .nav-1st {
+    font-size: 1.1em;
+}
+
+.sidebar .nav-2st {
+    font-size: 1em;
+}
+
+/*
+ *
+ * different modules below.
+ *
+ */
+
+/*======== the 3rd level nav, act as tabs within each page ========*/
+
+ul.nav-3rd {
+    /*position: fixed;*/
+    font-size: 1.2em;
+}
+
+ul.nav-tabs > li > span {
+    display: block;
+    margin-right: 2px;
+    padding: 0 15px;
+    border: 1px solid transparent;
+    font-size: 1.7em;
+}
+
+/*
+ul.nav-3rd {
+    margin-top: -.5em;
+    margin-bottom: 1em;
+    margin-left: -1.3em;
+    font-size: 1.2em;
+}
+
+ul.nav-3rd li {
+    margin-right: -2px;
+    border: solid 1px #428BCA;
+    border-radius: 4px;
+}
+
+ul.nav-3rd li:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-right: 0;
+}
+
+ul.nav-3rd li:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: 0;
+}
+*/
+/*======== descriptions between nav-3rd and the content =========*/
+div.description {
+    margin: 2em 0 1em 2em;
+    font-size: 1.2em;
+}
+
+/*=================alert===================*/
+
+.alert {
+    margin-bottom: 0;
+}
+
+.alert.feedback-float {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25em;
+    margin-left: -12.5em;
+    margin-top: -2.5em;
+    z-index: 5000;
+    box-shadow: 8px 8px 12px #444;
+    font-size: 1.35em !important;
+}
+
+/*=============table================*/
+
+table > thead > tr > th, table > tbody > tr > td {
+    text-align: center;
+    vertical-align: middle !important;
+    background-color: #eee;
+}
+
+table input[type="checkbox"].checkable {
+    border: 2px solid red;
+    font-size: 2em;
+}
+
+table th.material-name {
+    width: 15em;
+}
+
+table th.manipulation {
+    width: 10em;
+}
+
+/*=========== pagination ================*/
+ul.pagination {
+    margin: 0;
+    float: right;
+}
+
+.pagination > li.border-free > span {
+    padding: 6px 4px;
+    margin-left: 0;
+    border: 1px solid #ffffff;
+}
+
+.pagination > li > input {
+    position: relative;
+    float: left;
+    padding: 6px 2px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #428bca;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #fff;
+}
+
+.pagination > li > input {
+    width: 5em;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.pagination > li > input[type="submit"]:hover {
+    color: #eee;
+    background-color: #428BCA;
+}
+
+.pagination > li > span:hover {
+    background-color: #ffffff;
+    color: #428bca;
+}
+
+/*===================== form ===========================*/
+form.material-edit {
+    padding: 1em;
+    border: solid 1px #E7E7EB;
+    background-color: #F4F5F9;
+    /*background-color: #FCFCFC;*/
+}
+
+form.material-edit label {
+    font-weight: normal;
+    font-size: 1.1em;
+    text-indent: .2em;
+}
+
+span.required {
+    color: red;
+    margin: 0 .15em;
+}
+
+form div.uploadify-holder {
+    float: left;
+    margin-right: 1em;
+}
+
+form div#img-holder {
+    margin-bottom: 15px;
+}
+
+form div#img-holder img {
+    width: 140px;
+}
+
+/*-------- for the form of multiNews edit page -------*/
+
+/* todo
+/*----------CURRENTLY .sub-news IS NOT IN USE ----------*/
+
+form .form-group .main-news,
+form .form-group .sub-news {
+    position: relative;
+}
+
+form .form-group .main-news:after,
+form .form-group .sub-news:after {
+    content: " ";
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+form .form-group .main-news .img-wrapper,
+form .form-group .sub-news .img-wrapper {
+    overflow: hidden;
+    background: #bbb;
+}
+
+form .form-group .main-news .img-wrapper {
+    height: 150px;
+    min-height: 150px;
+}
+
+form .form-group .sub-news .img-wrapper {
+    height: 150px;
+    width: 33%;
+}
+
+form .form-group .main-news .img-wrapper img {
+    width: 100%;
+}
+
+form .form-group .sub-news .img-wrapper img {
+    height: 100%;
+    width: 100%;
+}
+
+form .form-group .main-news .title {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    padding: .2em;
+    background-color: black;
+    opacity: .75;
+    color: #eee;
+    text-overflow: ellipsis;
+    text-align: center;
+    word-break: break-all;
+    font-weight: normal;
+}
+
+form .form-group .sub-news .title {
+}
+
+form .form-group .main-news .cover,
+form .form-group .sub-news .cover,
+form .form-group.add-news .cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: .8;
+    color: #aaa;
+    text-align: center;
+    font-size: 2.5em;
+    padding-top: 50px;
+    word-spacing: 1em;
+}
+
+form .form-group .main-news .cover span:hover,
+form .form-group .sub-news .cover span:hover {
+    color: white;
+    cursor: pointer;
+}
+
+form .form-group.add-news {
+    position: relative;
+    height: 100px;
+    border: dotted 4px #777;
+    color: #777;
+    text-align: center;
+    font-size: 1.5em;
+    padding-top: 35px;
+}
+
+form .form-group.add-news:hover {
+    border-color: #111;
+    color: #111;
+    cursor: pointer;
+}
+
+form .form-group.add-news .cover {
+    background-color: transparent;
+}
+
+form .mass {
+    margin: 7px 0;
+    text-align: center;
+    letter-spacing: 1.1em;
+}
+
+form .mass span {
+    font-size: 2em;
+    color: #666;
+    opacity: .6;
+}
+
+form .mass span:hover {
+    cursor: pointer;
+    color: #000000;
+    opacity: 1;
+}
+
+form .mass .tooltip {
+    letter-spacing: normal;
+}
+
+/*============== modal dialog ==================*/
+.modal-footer {
+    text-align: center;
+}
+
+.modal-footer .btn {
+    padding: 5px 3em;
+    word-spacing: .5em;
+}
+
+/*--------------------------------------------------------*/
+/*-------------- gallery within the modal ----------------*/
+/*--------------------------------------------------------*/
+.gallery {
+    height: 335px;
+    overflow-y: scroll;
+}
+
+.gallery > ul {
+    margin: auto;
+    padding: 0;
+    width: 99%;
+}
+
+.gallery > ul > li {
+    display: inline-block;
+    list-style: none;
+}
+
+.gallery .img-wrapper,
+.gallery .wrapper {
+    display: inline-block;
+    position: relative;
+    margin-right: 1.2em;
+    margin-bottom: 1em;
+    width: 120px;
+    border: 1px solid #CCC;
+    cursor: pointer;
+}
+
+.gallery.gallery-news .img-wrapper {
+    margin-right: 1.1em;
+    margin-bottom: 1.1em;
+    width: 145px;
+}
+
+.gallery.gallery-text .wrapper {
+    width: 260px;
+}
+
+.gallery.gallery-voice .wrapper,
+.gallery.gallery-video .wrapper {
+    width: auto;
+}
+
+.gallery.gallery-voice audio,
+.gallery.gallery-video video {
+    width: 360px;
+}
+
+.gallery .img-wrapper img,
+.gallery .selected-mask {
+    display: block;
+    overflow-y: hidden;
+    width: 100%;
+    height: 120px;
+    text-align: center;
+}
+
+.gallery .img-wrapper .img-name,
+.gallery.gallery-news .img-wrapper .title,
+.gallery.gallery-text .wrapper .title,
+.gallery.gallery-voice .wrapper .title,
+.gallery.gallery-video .wrapper .title {
+    display: block;
+    padding: .2em .5em;
+    border-top: 1px solid #CCC;
+    width: 100%;
+    font-weight: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: break-word;
+    word-break: break-all;
+    text-align: center;
+}
+
+.gallery.gallery-news .img-wrapper .title,
+.gallery.gallery-text .wrapper .title,
+.gallery.gallery-voice .wrapper .title,
+.gallery.gallery-video .wrapper .title {
+    font-weight: bold;
+}
+
+.gallery.gallery-news .img-wrapper .content,
+.gallery.gallery-text .wrapper .content,
+.gallery.gallery-voice .wrapper .content,
+.gallery.gallery-video .wrapper .content {
+    display: block;
+    overflow: hidden;
+    padding: .2em .5em;
+    height: 8.9em;
+    width: 100%;
+    border-top: 1px solid #CCC;
+    font-weight: normal;
+    text-indent: 2em;
+    word-break: break-all;
+}
+
+.gallery.gallery-voice .wrapper .content,
+.gallery.gallery-video .wrapper .content {
+    height: auto;
+}
+
+.gallery .cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}
+
+.gallery .selected-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    opacity: .6;
+    padding: .3em 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 5em;
+    text-align: center;
+}
+
+.gallery.gallery-news .selected-mask {
+    padding: 1.3em 0;
+    opacity: .75;
+}
+
+.gallery.gallery-text .selected-mask {
+    padding-top: .45em;
+}
+
+.gallery.gallery-voice .selected-mask {
+    padding: 0;
+    font-size: 3.5em;
+    opacity: .8;
+}
+
+.gallery.gallery-video .selected-mask {
+    padding: 1.4em;
+}
+
+.gallery div.loading-holder {
+    padding-top: 150px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+/*============== preview area in the mass edit page ==================*/
+.preview-area {
+    margin: 1em 0;
+    padding: 1em .5em 0;
+    background-color: #fdfdfd;
+}
+
+.preview-area .title {
+    padding-bottom: .2em;
+    margin-bottom: .5em;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    word-spacing: 1em;
+    border-top: double 7px lightgrey;
+    border-bottom: double 7px lightgrey;
+}
+
+.preview-area .content {
+    padding: 0 2em;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.preview-area .content .text-title,
+.preview-area .content .audio-title,
+.preview-area .content .video-title {
+    margin-bottom: .3em;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.preview-area .content .text-content,
+.preview-area .content .news-content,
+.preview-area .content .audio-description,
+.preview-area .content .video-description {
+    padding-bottom: .7em;
+    margin-bottom: .8em;
+    text-indent: 2em;
+    font-size: 1.1em;
+}
+
+.preview-area .content img,
+.preview-area .content audio,
+.preview-area .content video {
+    width: 100%;
+}
+
+.preview-area .content .image-name,
+.preview-area .content .news-title {
+    margin-top: 7px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/*==========================================*/
+/*========== other overriding of B3 ========*/
+/*==========================================*/
+.btn {
+    word-spacing: .5em;
+}
+
+.row {
+    margin-bottom: 1em;
+}
+
+/*==========================================*/
+/*============ specifying each page ========*/
+/*==========================================*/
+
+/*------------- editing a new account ---------------*/
+div#account-portrait.form-group {
+    margin-top: -15px;
+}
+
+div#img-holder img {
+    width: 100%;
+}
+
+/*========================== 2015-1-31 19:53:37 ============================*/
+
+/*==========================================================================*/
+/*========================== basic waterfall layout ========================*/
+/*==========================================================================*/
+
+.waterfall-container {
+    padding: 0 1em;
+
+    column-width: 268px;
+    -moz-column-width: 268px;
+    -webkit-column-width: 268px;
+
+    /*column-count: 3;*/
+    /*-moz-column-count: 3;*/
+    /*-webkit-column-count: 3;*/
+
+    column-gap: 1.5em;
+    -moz-column-gap: 1.5em;
+    -webkit-column-gap: 1.5em;
+}
+
+.waterfall-container > .water {
+    display: inline-block;
+    margin: .5em 0;
+    padding-top: 5px;
+    width: 100%;
+    border: solid 1px #E7E7EB;
+    border-radius: 5px;
+    color: #666666;
+}
+
+.waterfall-container > .water img {
+    padding: 0 1em 1em;
+    width: 100%;
+}
+
+/*==========================================================================*/
+/*============= Specify different width of different material ==============*/
+/*==========================================================================*/
+
+.waterfall-container.text {
+    column-width: 340px;
+    -moz-column-width: 340px;
+    -webkit-column-width: 340px;
+}
+
+.waterfall-container.image {
+    column-width: 250px;
+    -moz-column-width: 250px;
+    -webkit-column-width: 250px;
+}
+
+.waterfall-container.news {
+    column-width: 268px;
+    -moz-column-width: 268px;
+    -webkit-column-width: 268px;
+}
+
+.waterfall-container.multinews {
+    column-width: 320px;
+    -moz-column-width: 320px;
+    -webkit-column-width: 320px;
+}
+
+.waterfall-container.audio {
+    column-width: 171px;
+    -moz-column-width: 171px;
+    -webkit-column-width: 171px;
+}
+
+/*==========================================================================*/
+/*=================== components inside the water fall =====================*/
+/*==========================================================================*/
+
+/*-------- an button(an anchor actually) for adding a new material----------*/
+.waterfall-container > .water > a.new-material {
+    display: block;
+    margin: -5px 0 0;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 1.5em;
+    font-size: 2.5em;
+    color: #5b5b5b;
+    background: #f5f5f5;
+    opacity: .7;
+    transition: all 300ms;
+}
+
+.waterfall-container > .water > a.new-material:hover {
+    font-size: 4em;
+    font-weight: bold;
+    text-shadow: 0 0 50px white;
+    color: #f6fcff;
+    background: #6197d5;
+    opacity: .9;
+    transition: all 300ms;
+}
+
+/*--------- used for text, image and (multi)news materials ----------*/
+
+.waterfall-container > .water > .title {
+    display: block;
+    margin-bottom: 5px;
+    padding: 0 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.waterfall-container > .water > .title a {
+    display: block;
+    color: #666666;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.waterfall-container > .water > .title a:hover {
+    letter-spacing: 1px;
+    text-shadow: 5px 3px 2px #E7E7EB;
+    color: black;
+}
+
+.waterfall-container > .water > .title a:link,
+.waterfall-container > .water > .title a:visited,
+.waterfall-container > .water > .title a:hover,
+.waterfall-container > .water > .title a:active {
+    text-decoration: none;
+}
+
+.waterfall-container > .water > .content,
+.waterfall-container > .water > .abstract {
+    display: block;
+    margin-bottom: 5px;
+    padding: 0 10px;
+    text-indent: 2em;
+    word-break: break-all;
+}
+
+.waterfall-container > .water > .abstract {
+    margin-bottom: 1em;
+    text-indent: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+}
+
+.waterfall-container > .water > .news-main {
+    position: relative;
+    margin: 7px 1em 1em;
+    height: 160px;
+    overflow: hidden;
+}
+
+.waterfall-container > .water > .news-main .title {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 3px 1px;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.1em;
+    color: white;
+    background: #222222;
+    opacity: .8;
+}
+
+.waterfall-container > .water > .news-main .title:hover {
+    text-shadow: 0 0 8px #eee;
+    color: #ffffff;
+    opacity: .9;
+    cursor: pointer;
+}
+
+.waterfall-container > .water > .news-main img,
+.waterfall-container > .water > .news-sub img {
+    margin: 0;
+    padding: 0;
+}
+
+.waterfall-container > .water > .news-sub {
+    position: relative;
+    padding: 1em;
+    border-top: solid 1px #E7E7EB;
+}
+
+.waterfall-container > .water > .news-sub:after {
+    content: "";
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.waterfall-container > .water > .news-sub .title {
+    display: block;
+    margin-right: 85px;
+    height: 80px;
+    max-height: 80px;
+    overflow: hidden;
+    line-height: 40px;
+    word-break: break-all;
+    color: #666666;
+}
+
+.waterfall-container > .water > .news-sub img {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    height: 80px;
+    width: 80px;
+}
+
+/*--------------------- used for audio material ---------------------*/
+
+.waterfall-container > .water > .media-control {
+    position: relative;
+    display: block;
+    margin: 7px 1em 1px;
+}
+
+.waterfall-container > .water > .media-control button {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: #ecedef;
+    border: 0;
+    border-radius: .1em;
+    text-align: center;
+    font-size: 3em;
+    opacity: .7;
+    cursor: pointer;
+    transition: all 200ms;
+}
+
+.waterfall-container > .water > .media-control button.js-bg-playing {
+    background: #81ebaa;
+    transition: all 200ms;
+}
+
+.waterfall-container > .water > .media-control button:hover {
+    /*background: #78dd9f;*/
+    /*color: #192219;*/
+    background: #9cd8ee;
+    color: #181922;
+    font-size: 4em;
+    text-shadow: 3px 3px 10px #444;
+    /*opacity: .85;*/
+    /*opacity transition does not perform perfectly in multi column layout in -webkit- browsers*/
+    transition: all 200ms;
+}
+
+/*
+    The following error-noted background style must be placed AFTER the :hover selector above.
+    Since we need this style to remain unchanged once it is added to the element,
+    placing this AFTER the :hover selector guarantees it would not be overridden by the :hover style above.
+
+    Contrarily, the playing-noted background style should be placed BEFORE the :hover selector,
+    so that it's style can be overridden by the :hover selector.
+*/
+.waterfall-container > .water > .media-control button.js-bg-error {
+    background: #eb8d94;
+    transition: all 200ms;
+}
+
+.waterfall-container > .water > .media-control .current-time,
+.waterfall-container > .water > .media-control .duration,
+.waterfall-container > .water > .media-control .error-msg {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    padding: 0 4px;
+    font-size: 1.2em;
+}
+
+.waterfall-container > .water > .media-control .current-time {
+    left: 0;
+}
+
+.waterfall-container > .water > .media-control .duration {
+    right: 0;
+}
+
+.waterfall-container > .water > .media-control .error-msg {
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.waterfall-container > .water > .media-name {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 3px;
+    padding: 2px 1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*---------- used for video materials (DEPRECATED) --------------------*/
+.waterfall-container > .water > .media-control video {
+    width: 100%;
+}
+
+/*================================================================================*/
+/*======== the toolbar at the bottom of each component in the waterfall ==========*/
+/*================================================================================*/
+
+.waterfall-container > .water > ul.toolbar {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.waterfall-container > .water > ul.toolbar:before,
+.waterfall-container > .water > ul.toolbar:after {
+    content: "";
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.waterfall-container > .water > ul.toolbar li {
+    float: left;
+    width: 50%;
+    list-style: none;
+    text-align: center;
+    line-height: 35px;
+    font-size: 1.2em;
+    border-top: solid 1px #E7E7EB;
+    border-right: solid 1px #E7E7EB;
+    background: #F4F4F4;
+}
+
+.waterfall-container > .water > ul.toolbar li:first-child {
+    border-bottom-left-radius: 4px;
+}
+
+.waterfall-container > .water > ul.toolbar li:last-child {
+    border-right: 0;
+    border-bottom-right-radius: 4px;
+}
+
+.waterfall-container > .water > ul.toolbar li a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color: #B2B2B2;
+}
+
+.waterfall-container > .water > ul.toolbar li a:hover {
+    color: #555555;
+}
+
+/*===========================================================*/
+/*============ basic masonry css definition =================*/
+/*===========================================================*/
+
+.masonry-container {
+
+}
+
+.masonry-container > .mason {
+    display: block;
+    width: 24.5%; /* 4 col originally */
+    word-break: break-all;
+}
+
+.masonry-container > .mason > * {
+    margin: 0 1em 1em 0;
+}
+
+@media screen and (max-width: 480px) {
+    .masonry-container > .mason {
+        width: 100%; /* 1 col */
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .masonry-container > .mason {
+        width: 49%; /* 2 col */
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .masonry-container > .mason {
+        width: 33%; /* 3 col */
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .masonry-container > .mason {
+        width: 24.5%; /* 4 col */
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .masonry-container > .mason {
+        width: 19.5%; /* 5 col */
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .masonry-container > .mason {
+        width: 16%; /* 6 col */
+    }
+}
+
+/*==========================================================================*/
+/*-------- an button(an anchor actually) for adding a new material----------*/
+
+.masonry-container > .mason > .material-wrapper-video a.new-material {
+    display: block;
+    margin: -.3em 0 0;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 1.5em;
+    font-size: 3em;
+    color: #5b5b5b;
+    background: #f5f5f5;
+    opacity: .7;
+    transition: all 300ms;
+}
+
+.masonry-container > .mason > .material-wrapper-video a.new-material:hover {
+    font-weight: bold;
+    text-shadow: 0 0 50px white;
+    color: #f6fcff;
+    background: #4087c4;
+    opacity: .9;
+    transition: all 300ms;
+}
+
+/*====================================================================*/
+/*================= specified for material video =====================*/
+/*====================================================================*/
+
+.masonry-container > .mason > .material-wrapper-video {
+    margin: 0 1em 1em 0;
+    padding-top: 1em;
+    border: solid 1px #E7E7EB;
+    border-radius: 5px;
+    color: #666666;
+}
+
+.masonry-container > .mason > .material-wrapper-video .video-holder {
+    padding: 0 1em;
+    margin-bottom: .3em;
+}
+
+.masonry-container > .mason > .material-wrapper-video .video-holder video {
+    width: 100%;
+}
+
+.masonry-container > .mason > .material-wrapper-video .title {
+    display: block;
+    margin-bottom: .5em;
+    padding: 0 1em;
+    text-align: center;
+    word-break: break-all;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.masonry-container > .mason > .material-wrapper-video ul.toolbar {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.masonry-container > .mason > .material-wrapper-video ul.toolbar:before,
+.masonry-container > .mason > .material-wrapper-video ul.toolbar:after {
+    content: "";
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.masonry-container > .mason > .material-wrapper-video ul.toolbar li {
+    float: left;
+    width: 50%;
+    list-style: none;
+    text-align: center;
+    line-height: 35px;
+    font-size: 1.2em;
+    border-top: solid 1px #E7E7EB;
+    border-right: solid 1px #E7E7EB;
+    background: #F4F4F4;
+}
+
+.masonry-container > .mason > .material-wrapper-video ul.toolbar li:first-child {
+    border-bottom-left-radius: 4px;
+}
+
+.masonry-container > .mason > .material-wrapper-video ul.toolbar li:last-child {
+    border-right: 0;
+    border-bottom-right-radius: 4px;
+}
+
+.masonry-container > .mason > .material-wrapper-video ul.toolbar li a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color: #B2B2B2;
+}
+
+.masonry-container > .mason > .material-wrapper-video ul.toolbar li a:hover {
+    color: #555555;
+}
+
+/*-------------- RWD for video material ----------*/
+
+@media screen and (max-width: 480px) {
+    .masonry-container.video > .mason {
+        width: 33%;
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .masonry-container.video > .mason {
+        width: 33%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .masonry-container.video > .mason {
+        width: 33%;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .masonry-container.video > .mason {
+        width: 33%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .masonry-container.video > .mason {
+        width: 33%; /* 3 col */
+    }
+}
+
+@media screen and (min-width: 1700px) {
+    .masonry-container.video > .mason {
+        width: 24.5%; /* 4 col */
+    }
+}
+
+/*=============================================================*/
+/*==== some stuff for web uploader and its relative things=====*/
+/*=============================================================*/
+
+/* An img upload fragment within a .form-group*/
+.web-uploader-wrapper .image-preview-wrapper {
+    position: relative;
+    height: 100px;
+}
+
+.web-uploader-wrapper .image-preview-wrapper img {
+    /*display: block;*/
+    margin: auto;
+    height: 100%;
+}
+
+/* to hack the bug that the upload btn would not work properly
+ if not display once the page loaded*/
+.far-away {
+    display: block;
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+.adjacent-to-right{
+    position: absolute;
+    left: 7.5em;
+    top: 12px;
+    z-index: 9999;
+}

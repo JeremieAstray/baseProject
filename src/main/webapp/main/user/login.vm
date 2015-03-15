@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="author" content="Ben Yip">
+    <meta name="Copyright" content="SCAU E-Top Studio All Rights Reserved">
+##    <meta http-equiv="Refresh" content="5; URL=wxmanager/user/login">
+    <title>易拓微信道后台登陆</title>
+    <link rel="shortcut icon" href="$link.contextPath/resources/icon/logo-30.gif">
+    <link rel="stylesheet" href="$link.contextPath/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="$link.contextPath/resources/css/global.css">
+    <link rel="stylesheet" href="$link.contextPath/resources/css/signin.css">
+    <link rel="stylesheet" href="$link.contextPath/resources/css/animate.css">
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .login-footer > div {
+            text-align: center;
+        }
+
+        form {
+            width: 300px;
+            margin: 0px auto;
+        }
+    </style>
+</head>
+<body>
+    #if($!message)
+    <div class="alert alert-info alert-dismissible feedback-float fade in text-center">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <span>$!message</span>
+    </div>
+    #end
+<div class="container-fluid">
+    <form action="$link.contextPath/user/login" name="user" id="loginForm"
+          method="POST" onsubmit="return submitform()">
+        <h2 id="login-header" class="animated bounceInDown form-signin-heading text-center">易拓微信道</h2>
+
+        <div class="form-group">
+            <input type="text" class="animated bounceInLeft form-control" placeholder="用户名" id="username"
+                   name="username" required
+                   autofocus/>
+        </div>
+        <div class="form-group">
+            <input type="password" class="animated bounceInRight form-control" placeholder="密码" id="password"
+                   name="password" required/>
+        </div>
+        <button id="login-btn" type="submit" class="animated bounceInUp btn btn-primary btn-block">登录</button>
+    </form>
+</div>
+<div class="login-footer">
+    #parse("/main/manage/footer.vm")
+</div>
+<script src="$link.contextPath/resources/js/jquery/jquery-2.1.1.min.js"></script>
+<script src="$link.contextPath/resources/js/bootstrap.js"></script>
+<script src="$link.contextPath/resources/js/global.js"></script>
+<script src="$link.contextPath/resources/js/md5.js"></script>
+<script type="text/javascript">
+    function submitform() {
+        //md5加密
+        $('#password').val(hex_md5($('#password').val()));
+        return true;
+    }
+
+    /*
+        $("#login-btn").click(function () {
+            $('#password').val(hex_md5($('#password').val()));
+
+            $("#login-header").removeClass("bounceInDown");
+            $("#login-header").addClass("bounceOutUp");
+
+            $("#username").removeClass("bounceInLeft");
+            $("#username").addClass("bounceOutLeft");
+
+            $("#password").removeClass("bounceInRight");
+            $("#password").addClass("bounceOutRight");
+
+            $("#login-btn").removeClass("bounceInUp");
+            $("#login-btn").addClass("bounceOutDown");
+
+            setTimeout(function () {
+                $("#loginForm").submit();
+            }, 800);
+        });
+        */
+
+    //$("#loginForm").addClass("");
+</script>
+</body>
+</html>

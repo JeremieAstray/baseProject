@@ -4,6 +4,7 @@
 
     <!-- 登录记录缓存 锁定10分钟 -->
     <cache name="passwordRetryCache"
+           maxEntriesLocalHeap="2000"
            eternal="false"
            timeToIdleSeconds="3600"
            timeToLiveSeconds="0"
@@ -12,6 +13,7 @@
     </cache>
 
     <cache name="authorizationCache"
+           maxEntriesLocalHeap="2000"
            eternal="false"
            timeToIdleSeconds="3600"
            timeToLiveSeconds="0"
@@ -20,6 +22,7 @@
     </cache>
 
     <cache name="authenticationCache"
+           maxEntriesLocalHeap="2000"
            eternal="false"
            timeToIdleSeconds="3600"
            timeToLiveSeconds="0"
@@ -28,6 +31,7 @@
     </cache>
 
     <cache name="shiro-activeSessionCache"
+           maxEntriesLocalHeap="2000"
            eternal="false"
            timeToIdleSeconds="3600"
            timeToLiveSeconds="0"
