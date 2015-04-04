@@ -12,36 +12,27 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "t_role", schema = "")
-public class Role extends BaseEntity {
-    private String roleName;
-    private List<Permission> permissions;
+public class Role extends BaseEntity{
+    private String name;
+    private List<ResourcePermission> resourcePermissionList;
 
-    @Column(name = "role_name")
-    public String getRoleName() {
-        return roleName;
+    @Column(name = "name")
+    public String getName() {
+        return name;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @OneToMany(targetEntity = Permission.class,fetch=FetchType.LAZY)
-    @JoinTable(name = "t_role_permission", joinColumns = {@JoinColumn(name = "role_id")}, inverseJoinColumns = {@JoinColumn(name = "permission_id")})
-    public List<Permission> getPermissions() {
-        return permissions;
+    @OneToMany(targetEntity = Permission.class, fetch = FetchType.EAGER)
+    @JoinTable(name = "t_role_resource_permission", joinColumns = {@JoinColumn(name = "role_id")}, inverseJoinColumns = {@JoinColumn(name = "resource_permission_id")})
+    public List<ResourcePermission> getResourcePermissionList() {
+        return resourcePermissionList;
     }
 
-    public void setPermissions(List<Permission> permissions) {
-        this.permissions = permissions;
-    }
-
-    @Transient
-    public Set<String> getPermissionsName(){
-        HashSet<String> permissionsNameSet = new HashSet<>();
-        for(Permission permission:permissions){
-            permissionsNameSet.add(permission.getPermissionName());
-        }
-        return permissionsNameSet;
+    public void setResourcePermissionList(List<ResourcePermission> resourcePermissionList) {
+        this.resourcePermissionList = resourcePermissionList;
     }
 
     @Override
@@ -51,8 +42,8 @@ public class Role extends BaseEntity {
 
         Role role = (Role) o;
 
-        if (id != role.id) return false;
-        if (roleName != null ? !roleName.equals(role.roleName) : role.roleName != null) return false;
+        if (id != null ? !id.equals(role.id) : role.id != null) return false;
+        if (name != null ? !name.equals(role.name) : role.name != null) return false;
         if (valid != null ? !valid.equals(role.valid) : role.valid != null) return false;
 
         return true;
@@ -61,9 +52,8 @@ public class Role extends BaseEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (roleName != null ? roleName.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (valid != null ? valid.hashCode() : 0);
         return result;
     }
-
 }

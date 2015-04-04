@@ -41,9 +41,9 @@ public class MyRealm extends AuthorizingRealm{
             info.setRoles(user.getRolesName());
             //用户的角色对应的所有权限，如果只使用角色定义访问权限
             Collection<Role> roleList=user.getRoles();
-            for (Role role : roleList) {
+            /*for (Role role : roleList) {
                 info.addStringPermissions(role.getPermissionsName());
-            }
+            }*/
             return info;
         }
         return null;

@@ -2,13 +2,14 @@ package com.etop.baseProject.modules.baseModules.service;
 
 
 import com.etop.baseProject.basic.service.BaseService;
-import com.etop.baseProject.modules.baseModules.dao.MenuDAO;
+import com.etop.baseProject.modules.baseModules.dao.ResourceDAO;
 import com.etop.baseProject.modules.baseModules.dao.RoleDAO;
 import com.etop.baseProject.modules.baseModules.dao.UserDAO;
-import com.etop.baseProject.modules.baseModules.entity.Menu;
+import com.etop.baseProject.modules.baseModules.entity.Resource;
 import com.etop.baseProject.modules.baseModules.entity.Permission;
 import com.etop.baseProject.modules.baseModules.entity.Role;
 import com.etop.baseProject.modules.baseModules.entity.User;
+import javafx.util.Pair;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class UserService extends BaseService {
     @Autowired
     private UserDAO userDAO;
     @Autowired
-    private MenuDAO menuDAO;
+    private ResourceDAO resourceDAO;
     @Autowired
     private RoleDAO roleDAO;
 
@@ -103,30 +104,31 @@ public class UserService extends BaseService {
      * @param id
      * @return
      */
-    public List<List<Menu>> getUserMenu(int id) throws Exception {
+    public List<List<Resource>> getUserMenu(int id) throws Exception {
         log.debug("******获取当前用户的菜单(包含user的角色)******");
         User user = userDAO.get(id);
         List<Role> roles = user.getRoles();
         //获取所有的权限
         List<Permission> permissions = new ArrayList<>();
-        roles.stream().filter(role -> role.getRoleName().contains("user")).forEach(role -> permissions.addAll(role.getPermissions()));
+        //todo
+        //roles.stream().filter(role -> role.getRoleName().contains("user")).forEach(role -> permissions.addAll(role.getPermissions()));
         //获取菜单
-        List<List<Menu>> menus = new ArrayList<>();
-        List<Menu> menuList = null;
+        List<List<Resource>> menus = new ArrayList<>();
+        List<Resource> resourceList = null;
         for (Permission permission : permissions) {
-            String[] permissionName = permission.getPermissionName().split(":");
+            String[] permissionName = permission.getName().split(":");
             if ("menu".equals(permissionName[0])) {
                 Map<String, Object> params = new HashMap<>();
                 params.put("menuName", permissionName[1]);
-                Menu menu = menuDAO.findUniqueResult("from Menu m where m.menuName = :menuName and valid = 1", params);
-                if(menu!=null){
+                Resource resource = resourceDAO.findUniqueResult("from Menu m where m.menuName = :menuName and valid = 1", params);
+                if(resource !=null){
                     try{
-                        menuList = menus.get(menu.getGroupsOrder()-1);
+                        resourceList = menus.get(resource.getOrderId()-1);
                     }catch (IndexOutOfBoundsException e){
-                        menuList = new ArrayList<>();
-                        menus.add(menu.getGroupsOrder()-1,menuList);
+                        resourceList = new ArrayList<>();
+                        menus.add(resource.getOrderId()-1, resourceList);
                     }
-                    menuList.add(menu);
+                    resourceList.add(resource);
                     /*Collections.sort(menuList, new Comparator<Menu>() {
                         @Override
                         public int compare(Menu o1, Menu o2) {
@@ -135,8 +137,8 @@ public class UserService extends BaseService {
                     });*/
                 }
             }
-            if (menuList != null)
-                Collections.sort(menuList,(o1,o2)-> o1.getId()-o2.getId());
+            if (resourceList != null)
+                Collections.sort(resourceList,(o1,o2)-> o1.getId()-o2.getId());
         }
         return menus;
     }
@@ -147,34 +149,35 @@ public class UserService extends BaseService {
      * @param id
      * @return
      */
-    public List<List<Menu>> getAdminMenu(int id) throws Exception {
+    public List<List<Resource>> getAdminMenu(int id) throws Exception {
         log.debug("******获取当前管理员的菜单(包含admin的角色)******");
         User user = userDAO.get(id);
         List<Role> roles = user.getRoles();
         //获取所有的权限
         List<Permission> permissions = new ArrayList<>();
-        roles.stream().filter(role -> role.getRoleName().contains("admin")).forEach(role -> permissions.addAll(role.getPermissions()));
+        //todo
+        //roles.stream().filter(role -> role.getRoleName().contains("admin")).forEach(role -> permissions.addAll(role.getPermissions()));
         //获取菜单
-        List<List<Menu>> menus = new ArrayList<>();
-        List<Menu> menuList = null;
+        List<List<Resource>> menus = new ArrayList<>();
+        List<Resource> resourceList = null;
         for (Permission permission : permissions) {
-            String[] permissionName = permission.getPermissionName().split(":");
+            String[] permissionName = permission.getName().split(":");
             if ("menu".equals(permissionName[0])) {
                 Map<String, Object> params = new HashMap<>();
                 params.put("menuName", permissionName[1]);
-                Menu menu = menuDAO.findUniqueResult("from Menu m where m.menuName = :menuName and valid = 1", params);
-                if(menu!=null){
+                Resource resource = resourceDAO.findUniqueResult("from Menu m where m.menuName = :menuName and valid = 1", params);
+                if(resource !=null){
                     try{
-                        menuList = menus.get(menu.getGroupsOrder()-1);
+                        resourceList = menus.get(resource.getOrderId()-1);
                     }catch (IndexOutOfBoundsException e){
-                        menuList = new ArrayList<>();
-                        menus.add(menu.getGroupsOrder()-1,menuList);
+                        resourceList = new ArrayList<>();
+                        menus.add(resource.getOrderId()-1, resourceList);
                     }
-                    menuList.add(menu);
+                    resourceList.add(resource);
                 }
             }
-            if (menuList != null)
-                Collections.sort(menuList,(o1,o2)-> o1.getId()-o2.getId());
+            if (resourceList != null)
+                Collections.sort(resourceList,(o1,o2)-> o1.getId()-o2.getId());
         }
         return menus;
     }

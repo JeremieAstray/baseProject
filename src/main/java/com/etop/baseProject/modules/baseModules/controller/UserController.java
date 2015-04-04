@@ -1,7 +1,7 @@
 package com.etop.baseProject.modules.baseModules.controller;
 
 import com.etop.baseProject.basic.controller.BaseController;
-import com.etop.baseProject.modules.baseModules.entity.Menu;
+import com.etop.baseProject.modules.baseModules.entity.Resource;
 import com.etop.baseProject.modules.baseModules.entity.User;
 import com.etop.baseProject.modules.baseModules.service.UserService;
 import org.apache.commons.lang.StringUtils;
@@ -14,13 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
@@ -74,7 +71,7 @@ public class UserController extends BaseController {
             user = userService.findByName(user.getUsername());
             session.setAttribute("user", user);
             session.setAttribute("menu", userService.getUserMenu(user.getId()));
-            List<List<Menu>> menus = userService.getAdminMenu(user.getId());
+            List<List<Resource>> menus = userService.getAdminMenu(user.getId());
             if (menus != null) {
                 session.setAttribute("adminMenu", menus);
             }

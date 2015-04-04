@@ -17,7 +17,7 @@ public class User  extends BaseEntity {
     private String password;
     private String email;
     private List<Role> roles;
-    private List<Menu> menuList;
+    private List<Resource> resourceList;
 
     @Column(name = "username")
     public String getUsername() {
@@ -60,17 +60,17 @@ public class User  extends BaseEntity {
     public Set<String> getRolesName(){
         HashSet<String> rolesNameSet = new HashSet<>();
         for(Role role:roles)
-            rolesNameSet.add(role.getRoleName());
+            rolesNameSet.add(role.getName());
         return rolesNameSet;
     }
 
     @Transient
-    public List<Menu> getMenuList() {
-        return menuList;
+    public List<Resource> getResourceList() {
+        return resourceList;
     }
 
-    public void setMenuList(List<Menu> menuList) {
-        this.menuList = menuList;
+    public void setResourceList(List<Resource> resourceList) {
+        this.resourceList = resourceList;
     }
 
     @Override
@@ -80,7 +80,7 @@ public class User  extends BaseEntity {
 
         User user = (User) o;
 
-        if (id != user.id) return false;
+        if (id != null ? !id.equals(user.id) : user.id != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
